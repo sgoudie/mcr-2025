@@ -1,0 +1,19 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+const playlistModules = import.meta.glob("../content/playlists/*.json", { eager: true }) as Record<string, any>;
+const playlists = Object.values(playlistModules) as any[];
+---
+
+<BaseLayout title="Playlists">
+  <h1 class="text-3xl font-bold mb-6">Playlists</h1>
+  <ul class="grid grid-cols-2 gap-6">
+    {playlists.map((playlist) => (
+      <li>
+        <a href={`${playlist.spotify}`}>
+          <h2 class="text-lg font-semibold">{playlist.title}</h2>
+          <p class="text-sm text-gray-500">{playlist.description}</p>
+        </a>
+      </li>
+    ))}
+  </ul>
+</BaseLayout>

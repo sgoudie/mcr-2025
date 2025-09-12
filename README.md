@@ -1,4 +1,7 @@
-# Astro Starter Kit: Minimal
+# MCR 2025
+The website for Morning Chorus Records - built with Astro in 2025. 
+
+## Astro
 
 ```sh
 npm create astro@latest -- --template minimal
