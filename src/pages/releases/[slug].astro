@@ -1,0 +1,33 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('releases');
+  return entries.map(({ data }) => ({
+    params: { slug: data.catalogue_reference.toLowerCase() },
+    props: { release: data },
+  }));
+}
+
+const { release } = Astro.props as { release: any };
+---
+
+<BaseLayout title={`${release.release_name} — ${release.artist}`}>
+  <div class="space-y-4">
+    <h1 class="text-3xl font-bold">{release.release_name}</h1>
+    <p class="text-lg">{release.artist}</p>
+    <p class="text-sm text-gray-500">{release.release_date} • {release.catalogue_reference} • {release.type} • {release.format}</p>
+
+    <!-- <h2 class="text-xl mt-6">Tracks</h2>
+    <ol class="list-decimal ml-6">
+      {release.tracks.map((track) => <li>{track}</li>)}
+    </ol> -->
+
+    {release.external_link && (
+      <div class="mt-6">
+        <a href={release.external_link} class="text-blue-600">Open external link</a>
+      </div>
+    )}
+  </div>
+</BaseLayout>
