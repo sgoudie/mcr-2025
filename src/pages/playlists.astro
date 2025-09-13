@@ -9,7 +9,7 @@ const imageModules = import.meta.glob("../content/playlists/*.{jpg,png,webp}", {
 
 <BaseLayout title="Playlists">
   <h1 class="text-3xl font-bold mb-6">Playlists</h1>
-  <ul class="grid grid-cols-2 gap-6">
+  <ul class="grid grid-cols-1 sm:grid-cols-2 gap-10">
     {playlists.map((playlist) => {
       const imageFile = playlist.image ? playlist.image.split('/').pop() : undefined;
       const importedImage = imageFile ? imageModules[`../content/playlists/${imageFile}`] : undefined;
@@ -21,8 +21,10 @@ const imageModules = import.meta.glob("../content/playlists/*.{jpg,png,webp}", {
           ) : (
             <img src={playlist.image} alt={playlist.title} />
           )}
-          <h2 class="text-lg font-semibold">{playlist.title}</h2>
-          <p class="text-sm text-gray-500">{playlist.description}</p>
+          <div class="flex flex-col gap-2 pt-4">
+            <h2 class="text-lg font-semibold">{playlist.title}</h2>
+            <p class="text-sm text-gray-500">{playlist.description}</p>
+          </div>
         </a>
       </li>
       );

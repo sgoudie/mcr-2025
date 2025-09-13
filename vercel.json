@@ -1,8 +1,13 @@
 {
   "redirects": [
     {
-      "source": "/releases/:path*",
-      "destination": "/catalogue/:path*",
+      "source": "/archive/:path*",
+      "destination": "/releases/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/archive",
+      "destination": "/releases",
       "permanent": true
     }
   ]

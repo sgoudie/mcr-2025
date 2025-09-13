@@ -5,7 +5,8 @@ const releases = (await getCollection('releases')).map(e => e.data);
 ---
 
 <BaseLayout title="Releases">
-  <h1 class="text-3xl font-bold mb-6">Releases</h1>
+  <h1 class="text-3xl font-bold mb-6">Release Catalogue</h1>
+  <p class="text-sm text-gray-500 mb-6">For all sync enquiries contact <a href="mailto:Jeff@bighugmusicgroup.com" class="">Jeff@bighugmusicgroup.com</a></p>
   <ul class="grid grid-cols-2 gap-6">
     {releases
     .sort((a, b) => b.catalogue_number - a.catalogue_number)
