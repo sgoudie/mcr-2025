@@ -11,7 +11,7 @@ const releases = (await getCollection('releases')).map(e => e.data);
     .sort((a, b) => b.catalogue_number - a.catalogue_number)
     .map((release) => (
       <li>
-        <a href={`/releases/${release.catalogue_reference.toLowerCase()}`}>
+        <a href={`/releases/${release.slug}`}>
           <h2 class="text-lg font-semibold">{release.release_name}</h2>
           <p class="text-sm text-gray-500">{release.artist}</p>
           <p class="text-sm text-gray-500">{release.catalogue_reference} - {release.type} - {release.format}</p>

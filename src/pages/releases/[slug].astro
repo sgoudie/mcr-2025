@@ -5,7 +5,7 @@ import { getCollection } from 'astro:content';
 export async function getStaticPaths() {
   const entries = await getCollection('releases');
   return entries.map(({ data }) => ({
-    params: { slug: data.catalogue_reference.toLowerCase() },
+    params: { slug: data.slug },
     props: { release: data },
   }));
 }
@@ -15,9 +15,20 @@ const { release } = Astro.props as { release: any };
 
 <BaseLayout title={`${release.release_name} — ${release.artist}`}>
   <div class="space-y-4">
+    <nav class="text-sm mb-2" aria-label="Breadcrumb">
+      <ol class="list-none p-0 inline-flex space-x-2">
+        <li>
+          <a href="/releases" class="hover:underline uppercase">Releases</a>
+        </li>
+        <li>
+          <span class="text-gray-400">/</span>
+        </li>
+        <li class="text-gray-500 uppercase" aria-current="page">{release.catalogue_reference}</li>
+      </ol>
+    </nav>
     <h1 class="text-3xl font-bold">{release.release_name}</h1>
     <p class="text-lg">{release.artist}</p>
-    <p class="text-sm text-gray-500">{release.release_date} • {release.catalogue_reference} • {release.type} • {release.format}</p>
+    <p class="text-sm text-gray-500">{release.release_date} • {release.type} • {release.format}</p>
 
     <!-- <h2 class="text-xl mt-6">Tracks</h2>
     <ol class="list-decimal ml-6">

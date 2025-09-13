@@ -13,6 +13,7 @@ const playlists = defineCollection({
 const releases = defineCollection({
   type: 'data',
   schema: z.object({
+    slug: z.string(),
     catalogue_number: z.number(),
     release_name: z.string(),
     catalogue_reference: z.string(),
