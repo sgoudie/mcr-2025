@@ -4,7 +4,7 @@ import { Image } from "astro:assets";
 import BaseLayout from "../layouts/BaseLayout.astro";
 const playlistModules = import.meta.glob("../content/playlists/*.json", { eager: true }) as Record<string, any>;
 const playlists = Object.values(playlistModules) as any[];
-const imageModules = import.meta.glob("../content/playlists/*.{jpg,png,webp}", { eager: true, import: "default" }) as Record<string, any>;
+const imageModules = import.meta.glob("../content/playlists/assets/*.{jpg,jpeg,png,webp}", { eager: true, import: "default" }) as Record<string, any>;
 ---
 
 <BaseLayout title="Playlists">
@@ -19,7 +19,7 @@ const imageModules = import.meta.glob("../content/playlists/*.{jpg,png,webp}", {
     <ul class="grid grid-cols-1 sm:grid-cols-2 gap-10">
       {playlists.map((playlist) => {
         const imageFile = playlist.image ? playlist.image.split('/').pop() : undefined;
-        const importedImage = imageFile ? imageModules[`../content/playlists/${imageFile}`] : undefined;
+        const importedImage = imageFile ? imageModules[`../content/playlists/assets/${imageFile}`] : undefined;
         return (
         <li>
           <a href={`${playlist.spotify}`}>
