@@ -26,7 +26,7 @@ const { release } = Astro.props as { release: any };
         <li class="text-gray-500 uppercase" aria-current="page">{release.catalogue_reference}</li>
       </ol>
     </nav>
-    <h1 class="text-3xl font-bold">{release.release_name}</h1>
+    <h1 class="text-3xl font-bold uppercase">{release.release_name}</h1>
     <p class="text-lg">{release.artist}</p>
     <p class="text-sm text-gray-500">Release Date: {release.release_date}</p>
     <p class="text-sm text-gray-500">{release.type} / {release.format}</p>
