@@ -2,7 +2,7 @@
 import "../styles/global.css";
 import { Image } from "astro:assets";
 import mcrLogo from "../assets/mcr_logo_orange_fill.svg";
-import mcrRoundal from "../assets/mcr_roundal_mono.svg";
+import mcrRoundal from "../assets/mcr_favicon.svg";
 
 const { title } = Astro.props;
 ---
@@ -19,8 +19,8 @@ const { title } = Astro.props;
 
     <header class="p-4 border-b mb-8">
       <nav class="max-w-4xl mx-auto flex justify-between">
-        <a href="/" class="font-bold">
-        <Image src={mcrLogo} alt="Morning Chorus Records" width={80} height={80} class="flex-shrink-0" />
+        <a href="/">
+            <Image src={mcrLogo} alt="Morning Chorus Records" width={80} height={80} class="flex-shrink-0" />
         </a>
         <div class="space-x-4">
           <a href="/releases" class="hover:underline">Releases</a>
@@ -35,13 +35,20 @@ const { title } = Astro.props;
 
     <footer class="p-4 border-t text-sm text-gray-500 mt-20">
         <div class="max-w-4xl mx-auto">
-            <Image src={mcrRoundal} alt="Morning Chorus Records" width={160} height={160} class="flex-shrink-0" />
+            <div class="flex flex-col sm:flex-row sm:items-center sm:gap-8">
+              <a href="/" class="mb-4 sm:mb-0 sm:mr-8 flex-shrink-0 flex justify-center">
+                <Image src={mcrRoundal} alt="Morning Chorus Records" width={80} height={80} class="flex-shrink-0" />
+            </a>
             <div class="flex flex-col gap-2">
-                <p>© {new Date().getFullYear()} Morning Chorus Records</p>
-                <p>Independent & Artist Owned by <a href="https://thegoudies.com">The Goudies</a></p>
-                <p>Morning Chorus Records is a trading name of Goudie Works Ltd.</p>
-                <p>Company number 11656551. Registered in England and Wales. All rights reserved.</p>
+                <div>
+                    <p>© {new Date().getFullYear()} Morning Chorus Records</p>
+                </div>
+                <div>
+                    <p>Morning Chorus Records is a trading name of Goudie Works Ltd.</p>
+                    <p>Company number 11656551. Registered in England and Wales. All rights reserved.</p>
+                </div>
             </div>
+            
         </div>
     </footer>
   </body>

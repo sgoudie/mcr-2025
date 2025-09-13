@@ -3,8 +3,21 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
 <BaseLayout title="Home">
-	<h1>Morning Chorus Records</h1>
-	<p>PRESS/MEDIA - If you would like to receive future press releases from Morning Chorus Records → <a href="https://morningchorusrecords.kit.com/press-list">SIGN UP HERE</a></p>
+
+	<div class="flex flex-col gap-8">
+		<div class="flex flex-col gap-2">
+			<h1 class="text-3xl font-bold">Morning Chorus Records</h1>
+			<p class="text-lg text-gray-500">Independent & Artist Owned by <a href="https://thegoudies.com" class="hover:underline">The Goudies</a></p>
+		</div>
+		
+		<ul>
+			<li>CATALOGUE &rarr; <a href="/releases" class="hover:underline">Releases</a></li>
+			<li>CURATION &rarr; <a href="/playlists" class="hover:underline">Playlists</a></li>
+			<li>SYNC &rarr; <a href="mailto:Jeff@bighugmusicgroup.com" class="hover:underline">Jeff@bighugmusicgroup.com</a></li>
+			<li>PRESS &rarr; <a href="https://morningchorusrecords.kit.com/press-list" class="hover:underline">Join Press List</a></li>
+		</ul>
+	</div>
+	
 </BaseLayout>
 
 
