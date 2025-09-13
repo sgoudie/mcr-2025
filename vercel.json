@@ -1,0 +1,11 @@
+{
+  "redirects": [
+    {
+      "source": "/releases/:path*",
+      "destination": "/catalogue/:path*",
+      "permanent": true
+    }
+  ]
+}
+
+
