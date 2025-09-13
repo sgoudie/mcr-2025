@@ -1,7 +1,9 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { getCollection } from 'astro:content';
+
 const releases = (await getCollection('releases')).map(e => e.data);
+
 ---
 
 <BaseLayout title="Releases">
