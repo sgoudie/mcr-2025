@@ -8,7 +8,8 @@
     "type": "Merch",
     "format": "Print",
     "upc": null,
-    "external_link": "https://store.morningchorusrecords.com/products/the-goudies-breathe-a3-print",
+    "store_link": "https://store.morningchorusrecords.com/products/the-goudies-breathe-a3-print",
     "image": "mcr008.png",
-    "related_releases": ["mcr007", "mcr009"]
+    "related_releases": ["mcr007", "mcr009"],
+    "youtube_link": "https://youtu.be/IVCUoT8mRlM?si=1PX8p6-i1ewyK1pw"
 }

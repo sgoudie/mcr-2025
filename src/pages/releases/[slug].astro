@@ -15,6 +15,50 @@ const { release } = Astro.props as { release: any };
 const imageModules = import.meta.glob("../../content/releases/assets/*.{jpg,jpeg,png,webp}", { eager: true, import: "default" }) as Record<string, any>;
 const imageFile = release.image ? release.image.split('/').pop() : undefined;
 const importedImage = imageFile ? imageModules[`../../content/releases/assets/${imageFile}`] : undefined;
+
+function toYouTubeEmbed(inputUrl: string): string | null {
+  try {
+    const url = new URL(inputUrl);
+    const host = url.hostname.replace(/^www\./, '');
+
+    // youtu.be/<id>
+    if (host === 'youtu.be') {
+      const videoId = url.pathname.replace(/^\//, '');
+      return videoId ? `https://www.youtube.com/embed/${videoId}` : null;
+    }
+
+    // *.youtube.com variants
+    if (host === 'youtube.com' || host.endsWith('.youtube.com')) {
+      // Already embed
+      if (url.pathname.startsWith('/embed/')) {
+        return `https://www.youtube.com${url.pathname}`;
+      }
+      // Standard watch URL
+      if (url.pathname === '/watch') {
+        const videoId = url.searchParams.get('v');
+        return videoId ? `https://www.youtube.com/embed/${videoId}` : null;
+      }
+      // Shorts URL
+      if (url.pathname.startsWith('/shorts/')) {
+        const segments = url.pathname.split('/');
+        const videoId = segments[2];
+        return videoId ? `https://www.youtube.com/embed/${videoId}` : null;
+      }
+      // Live URL
+      if (url.pathname.startsWith('/live/')) {
+        const segments = url.pathname.split('/');
+        const videoId = segments[2];
+        return videoId ? `https://www.youtube.com/embed/${videoId}` : null;
+      }
+    }
+
+    return null;
+  } catch {
+    return null;
+  }
+}
+
+const youtubeEmbedUrl: string | null = release.youtube_link ? toYouTubeEmbed(release.youtube_link) : null;
 ---
 
 <BaseLayout title={`${release.release_name} — ${release.artist}`}>
@@ -45,17 +89,42 @@ const importedImage = imageFile ? imageModules[`../../content/releases/assets/${
         <p class="text-lg">{release.artist}</p>
         <p class="text-sm text-gray-500">Release Date: {release.release_date}</p>
         <p class="text-sm text-gray-500">{release.type} / {release.format}</p>
-        <h2 class="text-xl mt-6">Tracks</h2>
-        <ol class="list-decimal ml-6">
-          {release.tracks.map((track: string) => <li>{track}</li>)}
-        </ol>
+        {release.tracks && release.tracks.length > 0 && (
+          <div>
+            <h2 class="text-xl mt-6">Tracks</h2>
+            <ol class="list-decimal ml-6">
+              {release.tracks.map((track: string) => <li>{track}</li>)}
+            </ol>
+          </div>
+        )}
       </div>
-      {release.external_link && (
-        <div class="mt-6">
-          <a href={release.external_link} class="">Listen / Buy</a>
-        </div>
-      )}
+
+      <div class="mt-6">
+        {release.pivot_link && (
+          <a href={release.pivot_link} class="hover:underline">Listen / Buy &rarr; All Music Platforms</a>
+        )}
+        {release.store_link && (
+            <a href={release.store_link} class="hover:underline">Buy Now &rarr; MCR Store</a>
+        )}
+      </div>
     </div>
+    
+
+    {youtubeEmbedUrl && (
+      <div class="mt-16">
+        <div class="aspect-video w-full max-w-2xl mx-auto">
+          <iframe
+            src={youtubeEmbedUrl}
+            title="YouTube video player"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen
+            class="w-full h-full rounded"
+            frameborder="0"
+          ></iframe>
+        </div>
+      </div>
+    )}
+
 
   </div>
 </BaseLayout>

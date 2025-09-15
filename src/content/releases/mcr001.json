@@ -8,7 +8,7 @@
     "type": "EP",
     "format": "Digital",
     "upc": 5056513121829,
-    "external_link": "https://thegoudies.ffm.to/whenthisisover",
+    "pivot_link": "https://thegoudies.ffm.to/whenthisisover",
     "image": "mcr001.jpg",
     "related_releases": ["mcr003"],
     "tracks": ["When This Is Over", "Ashes", "Maggie's Prayers"]

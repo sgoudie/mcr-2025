@@ -22,10 +22,12 @@ const releases = defineCollection({
     type: z.enum(['EP', 'Single', 'Album', 'Merch']).default('Single'),
     format: z.enum(['Digital', 'CD', 'Vinyl', 'Print']).default('Digital'),
     upc: z.union([z.number(), z.null()]).optional(),
-    external_link: z.string().url(),
     image: z.string().optional(),
     related_releases: z.array(z.string()).optional(),
     tracks: z.array(z.string()).optional(),
+    pivot_link: z.string().url().optional(),
+    store_link: z.string().url().optional(),
+    youtube_link: z.string().url().optional(),
   }),
 });
 

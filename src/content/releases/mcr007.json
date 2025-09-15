@@ -8,8 +8,9 @@
     "type": "Single",
     "format": "Digital",
     "upc": 5056712756839,
-    "external_link": "https://thegoudies.ffm.to/breathe",
+    "pivot_link": "https://thegoudies.ffm.to/breathe",
     "image": "mcr007.jpg",
     "related_releases": ["mcr008", "mcr009"],
-    "tracks": ["Breathe"]
+    "tracks": ["Breathe"],
+    "youtube_link": "https://youtu.be/IVCUoT8mRlM?si=1PX8p6-i1ewyK1pw"
 }
