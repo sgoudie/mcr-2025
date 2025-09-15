@@ -59,6 +59,24 @@ function toYouTubeEmbed(inputUrl: string): string | null {
 }
 
 const youtubeEmbedUrl: string | null = release.youtube_link ? toYouTubeEmbed(release.youtube_link) : null;
+
+// Resolve related releases to full data
+const allReleases = await getCollection('releases');
+const allReleaseData = allReleases.map(e => e.data);
+const byCatalogueRef = new Map(allReleaseData.map((r: any) => [r.catalogue_reference.toLowerCase(), r]));
+const bySlug = new Map(allReleaseData.map((r: any) => [r.slug, r]));
+const byCatalogueNumber = new Map(allReleaseData.map((r: any) => [String(r.catalogue_number).padStart(3, '0'), r]));
+
+function resolveRelated(id: string) {
+  const lower = id.toLowerCase();
+  const stripped = id.replace(/^mcr/i, '');
+  const padded = stripped.padStart(3, '0');
+  return byCatalogueRef.get(lower) || bySlug.get(padded) || byCatalogueNumber.get(padded) || null;
+}
+
+const relatedReleases = Array.isArray(release.related_releases)
+  ? (release.related_releases.map((id: string) => resolveRelated(id)).filter(Boolean) as any[])
+  : [];
 ---
 
 <BaseLayout title={`${release.release_name} — ${release.artist}`}>
@@ -91,7 +109,7 @@ const youtubeEmbedUrl: string | null = release.youtube_link ? toYouTubeEmbed(rel
         <p class="text-sm text-gray-500">{release.type} / {release.format}</p>
         {release.tracks && release.tracks.length > 0 && (
           <div>
-            <h2 class="text-xl mt-6">Tracks</h2>
+            <h2 class="text-md mt-6 uppercase">Tracks</h2>
             <ol class="list-decimal ml-6">
               {release.tracks.map((track: string) => <li>{track}</li>)}
             </ol>
@@ -101,14 +119,13 @@ const youtubeEmbedUrl: string | null = release.youtube_link ? toYouTubeEmbed(rel
 
       <div class="mt-6">
         {release.pivot_link && (
-          <a href={release.pivot_link} class="hover:underline">Listen / Buy &rarr; All Music Platforms</a>
+          <a href={release.pivot_link} class="underline text-lg">Listen / Buy &rarr; All Music Platforms</a>
         )}
         {release.store_link && (
-            <a href={release.store_link} class="hover:underline">Buy Now &rarr; MCR Store</a>
+            <a href={release.store_link} class="underline text-lg">Buy Now &rarr; MCR Store</a>
         )}
       </div>
     </div>
-    
 
     {youtubeEmbedUrl && (
       <div class="mt-16">
@@ -125,6 +142,24 @@ const youtubeEmbedUrl: string | null = release.youtube_link ? toYouTubeEmbed(rel
       </div>
     )}
 
+  {relatedReleases.length > 0 && (
+    <div class="mt-16">
+      <h3 class="text-md mb-6 uppercase">Related Releases</h3>
+      <ul class="space-y-6">
+        {relatedReleases.map((r: any) => (
+          <li>
+            <a href={`/releases/${r.slug}`} class="hover:underline">
+            <div class="flex flex-col gap-1">
+              <span>&rarr; {r.catalogue_reference} - {r.release_name}
+              </span>
+              <span class="text-sm text-gray-500">{r.artist} - {r.format} - {r.type}</span>
+            </div>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  )}
 
   </div>
 </BaseLayout>
