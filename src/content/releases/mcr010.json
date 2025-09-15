@@ -8,5 +8,8 @@
     "type": "Single",
     "format": "Digital",
     "upc": 5056777778524,
-    "external_link": "https://thegoudies.ffm.to/wherewebelong-homesession"
+    "external_link": "https://thegoudies.ffm.to/wherewebelong-homesession",
+    "image": "mcr010.jpg",
+    "related_releases": ["mcr011", "mcr012", "mcr013"],
+    "tracks": ["Where We Belong - Home Session"]
 }

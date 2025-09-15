@@ -23,6 +23,9 @@ const releases = defineCollection({
     format: z.enum(['Digital', 'CD', 'Vinyl', 'Print']).default('Digital'),
     upc: z.union([z.number(), z.null()]).optional(),
     external_link: z.string().url(),
+    image: z.string().optional(),
+    related_releases: z.array(z.string()).optional(),
+    tracks: z.array(z.string()).optional(),
   }),
 });
 

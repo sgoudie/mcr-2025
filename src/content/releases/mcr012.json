@@ -8,5 +8,8 @@
     "type": "EP",
     "format": "CD",
     "upc": null,
-    "external_link": "https://store.morningchorusrecords.com/products/home-sessions-vol-1-ep"
+    "external_link": "https://store.morningchorusrecords.com/products/home-sessions-vol-1-ep",
+    "image": "mcr012.jpg",
+    "related_releases": ["mcr010", "mcr011", "mcr013"],
+    "tracks": ["L.A. Never Leaves Me - Home Session", "Hurt People - Home Session", "Where We Belong - Home Session", "Home - Home Session"]
 }

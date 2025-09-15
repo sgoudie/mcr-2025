@@ -8,5 +8,8 @@
     "type": "Single",
     "format": "Digital",
     "upc": 5056712715324,
-    "external_link": "https://thegoudies.ffm.to/laneverleavesme"
+    "external_link": "https://thegoudies.ffm.to/laneverleavesme",
+    "image": "mcr005.jpg",
+    "related_releases": ["mcr006"],
+    "tracks": ["L.A. Never Leaves Me"]
 }

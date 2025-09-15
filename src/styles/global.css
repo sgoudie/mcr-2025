@@ -2,6 +2,8 @@
 @import "@fontsource-variable/space-grotesk";
 
 @theme {
+    --breakpoint-xs: 20rem;
+
     --font-sans: "Space Grotesk Variable", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     /* ... */
 }

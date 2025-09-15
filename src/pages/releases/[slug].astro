@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { getCollection } from 'astro:content';
+import { Image } from "astro:assets";
 
 export async function getStaticPaths() {
   const entries = await getCollection('releases');
@@ -11,6 +12,9 @@ export async function getStaticPaths() {
 }
 
 const { release } = Astro.props as { release: any };
+const imageModules = import.meta.glob("../../content/releases/assets/*.{jpg,jpeg,png,webp}", { eager: true, import: "default" }) as Record<string, any>;
+const imageFile = release.image ? release.image.split('/').pop() : undefined;
+const importedImage = imageFile ? imageModules[`../../content/releases/assets/${imageFile}`] : undefined;
 ---
 
 <BaseLayout title={`${release.release_name} — ${release.artist}`}>
@@ -26,20 +30,32 @@ const { release } = Astro.props as { release: any };
         <li class="text-gray-500 uppercase" aria-current="page">{release.catalogue_reference}</li>
       </ol>
     </nav>
-    <h1 class="text-3xl font-bold uppercase">{release.release_name}</h1>
-    <p class="text-lg">{release.artist}</p>
-    <p class="text-sm text-gray-500">Release Date: {release.release_date}</p>
-    <p class="text-sm text-gray-500">{release.type} / {release.format}</p>
+    <div class="flex flex-col gap-2">
 
-    <!-- <h2 class="text-xl mt-6">Tracks</h2>
-    <ol class="list-decimal ml-6">
-      {release.tracks.map((track) => <li>{track}</li>)}
-    </ol> -->
-
-    {release.external_link && (
-      <div class="mt-6">
-        <a href={release.external_link} class="text-blue-600">Open external link</a>
+      <div class="flex flex-col gap-2 pb-8">
+        {importedImage ? (
+          <Image src={importedImage} alt={release.release_name} />
+        ) : (
+          <img src={release.image} alt={release.release_name} />
+        )}
       </div>
-    )}
+      
+      <div class="flex flex-col gap-2">
+        <h1 class="text-3xl font-bold uppercase">{release.release_name}</h1>
+        <p class="text-lg">{release.artist}</p>
+        <p class="text-sm text-gray-500">Release Date: {release.release_date}</p>
+        <p class="text-sm text-gray-500">{release.type} / {release.format}</p>
+        <h2 class="text-xl mt-6">Tracks</h2>
+        <ol class="list-decimal ml-6">
+          {release.tracks.map((track: string) => <li>{track}</li>)}
+        </ol>
+      </div>
+      {release.external_link && (
+        <div class="mt-6">
+          <a href={release.external_link} class="">Listen / Buy</a>
+        </div>
+      )}
+    </div>
+
   </div>
 </BaseLayout>
