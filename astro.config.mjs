@@ -9,7 +9,8 @@ export default defineConfig({
   adapter: vercel({}),
   redirects: {
     '/archive': '/releases',         // exact match
-    '/archive/*': '/releases/*',     // wildcard catch-all
+    // Wildcard redirect currently handled in /pages/archive/[slug].astro
+    // '/archive/[...slug]': '/releases/[...slug]',     // wildcard catch-all
   },
   vite: {
     plugins: [tailwindcss()]

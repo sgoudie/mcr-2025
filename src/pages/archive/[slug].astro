@@ -1,0 +1,28 @@
+---
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const releases = await getCollection('releases');
+  return releases.map(({ data }) => ({
+    params: { slug: data.slug },
+    props: { slug: data.slug },
+  }));
+}
+
+const { slug } = Astro.props as { slug: string };
+
+export const prerender = true;
+
+export async function GET() {
+  return new Response(null, {
+    status: 301,
+    headers: {
+      Location: `/releases/${slug}`,
+    },
+  });
+}
+
+---
+
+<!-- Fallback content for non-GET requests or preview -->
+<p>Redirecting to /releases/{slug}...</p>
