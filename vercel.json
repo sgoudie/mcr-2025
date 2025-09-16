@@ -1,14 +1,13 @@
 {
-  "$schema": "https://openapi.vercel.sh/vercel.json",
   "redirects": [
-    {
-      "source": "/archive/:path*",
-      "destination": "/releases/:path*",
-      "permanent": true
-    },
     {
       "source": "/archive",
       "destination": "/releases",
+      "permanent": true
+    },
+    {
+      "source": "/archive/:path*",
+      "destination": "/releases/:path*",
       "permanent": true
     }
   ]
