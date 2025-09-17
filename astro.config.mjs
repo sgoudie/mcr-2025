@@ -7,6 +7,10 @@ import vercel from '@astrojs/vercel';
 // https://astro.build/config
 export default defineConfig({
   adapter: vercel({}),
+  redirects: {
+    '/archive': '/releases',         // exact match
+    '/archive/[slug]': '/releases/[slug]',     // wildcard catch-all
+  },
   vite: {
     plugins: [tailwindcss()]
   }

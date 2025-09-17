@@ -2,6 +2,20 @@
 	"version": 3,
 	"routes": [
 		{
+			"src": "^/archive(?:/([^/]+?))$",
+			"headers": {
+				"Location": "/releases/$1"
+			},
+			"status": 301
+		},
+		{
+			"src": "^/archive$",
+			"headers": {
+				"Location": "/releases"
+			},
+			"status": 301
+		},
+		{
 			"handle": "filesystem"
 		},
 		{
