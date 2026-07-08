@@ -1,0 +1,15 @@
+{
+    "slug": "014",
+    "catalogue_number": 14,
+    "release_name": "Make It With You",
+    "catalogue_reference": "MCR014",
+    "artist": "The Goudies",
+    "release_date": "27/03/2026",
+    "type": "Single",
+    "format": "Digital",
+    "upc": "5063930019103",
+    "pivot_link": "https://the-goudies.ffm.to/makeitwithyou",
+    "image": "mcr014.jpg",
+    "related_releases": ["mcr015"],
+    "tracks": ["Make It With You"]
+}

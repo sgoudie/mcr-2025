@@ -1,0 +1,15 @@
+{
+    "slug": "015",
+    "catalogue_number": 15,
+    "release_name": "Hold On Honey",
+    "catalogue_reference": "MCR015",
+    "artist": "The Goudies",
+    "release_date": "09/11/2024",
+    "type": "Single",
+    "format": "Digital",
+    "upc": "5063930063755",
+    "pivot_link": "https://the-goudies.ffm.to/holdonhoney",
+    "image": "mcr015.jpg",
+    "related_releases": ["mcr014"],
+    "tracks": ["Hold On Honey", "Make It With You"]
+}
