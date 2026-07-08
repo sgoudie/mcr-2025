@@ -21,7 +21,7 @@ const releases = defineCollection({
     release_date: z.string(), // dd/mm/yyyy in current data
     type: z.enum(['EP', 'Single', 'Album', 'Merch']).default('Single'),
     format: z.enum(['Digital', 'CD', 'Vinyl', 'Print']).default('Digital'),
-    upc: z.union([z.number(), z.null()]).optional(),
+    upc: z.union([z.string(), z.null()]).optional(),
     image: z.string().optional(),
     related_releases: z.array(z.string()).optional(),
     tracks: z.array(z.string()).optional(),
